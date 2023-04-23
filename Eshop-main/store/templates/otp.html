@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <div class="container">
+            {% if error%}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endif %}
+            <h1>We Have Sent You Code On Email</h1>
+            <h5> Enter the Confirmation Code Below </h5>
+            <div class="userInput">
+                <form action="/otp-verification" method="POST" >
+                {% csrf_token %}
+                <input type="text" name="otp" id='ist' maxlength="6"> 
+                <input type="hidden" name="id" value={{id}}>
+            </div>  
+                <input type='submit' value="CONFIRM" />
+                </form> 
+            
+          <a href="javascript:location.reload(true)" class="btn">RESEND</a>
+
+        </div> 
+</body>
+{% endblock %}
